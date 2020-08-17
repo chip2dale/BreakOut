@@ -6,6 +6,7 @@ public class block : MonoBehaviour
 {
     // Start is called before the first frame update
     public int hp;
+    public GameDirector gameDirector;
     void Start()
     {
         if (hp == 5)
@@ -30,6 +31,7 @@ public class block : MonoBehaviour
         }
         if (hp == 0)
         {
+            gameDirector.DecreaseCount();
             Destroy(this.gameObject);
         }
     }
@@ -64,6 +66,7 @@ public class block : MonoBehaviour
         }
         if (hp == 0)
         {
+            gameDirector.DecreaseCount();
             Destroy(this.gameObject);
         }
     }

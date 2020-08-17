@@ -10,17 +10,16 @@ public class BallMove : MonoBehaviour
     void Start()
     {
         rb.AddForce(6, 0, -15, ForceMode.Impulse);
-        startvelocity = 12;
-        print(startvelocity);
+        startvelocity = 10;
     }
 
     // Update is called once per frame
     void Update()
     {
-        print(rb.velocity.magnitude);
+       
         if (rb.velocity.magnitude < startvelocity)
         {
-            rb.AddForce(transform.forward*10);
+            rb.AddForce(rb.velocity.normalized*10);
         }
     }
     private void OnTriggerEnter(Collider other)　//衝突判定　通り抜ける　当たっととき

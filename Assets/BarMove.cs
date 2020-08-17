@@ -14,13 +14,14 @@ public class BarMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rb.velocity = Vector3.zero;
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            rb.AddForce(5, 0, 0, ForceMode.Impulse);
+            rb.velocity = transform.right * 20;
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            rb.AddForce(-5, 0, 0, ForceMode.Impulse);
+            rb.velocity = transform.right*-1*20;
         }
     }
 }
