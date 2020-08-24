@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class BallMove : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int playCount;
+    // Start is called beforep the first frame update
     public Rigidbody rb;
     float startvelocity;
+    public GameDirector gameDirector;
     void Start()
     {
+        playCount = 3;
         rb.AddForce(6, 0, -15, ForceMode.Impulse);
         startvelocity = 10;
     }
@@ -27,6 +30,11 @@ public class BallMove : MonoBehaviour
         if (other.tag == "DeleteZone")
         {
             StartCoroutine(Reset());        //Restartコルーチンを始める
+            playCount = playCount - 1;
+            if (playCount == 0)
+            {
+                gameDirector.GameOver();
+            }
         }
     }
     //コルーチン
