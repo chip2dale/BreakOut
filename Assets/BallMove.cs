@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallMove : MonoBehaviour
 {
@@ -9,11 +10,13 @@ public class BallMove : MonoBehaviour
     public Rigidbody rb;
     float startvelocity;
     public GameDirector gameDirector;
+    public Text playCountText;
     void Start()
     {
         playCount = 3;
         rb.AddForce(6, 0, -15, ForceMode.Impulse);
         startvelocity = 10;
+        playCountText.text = "playCount:" + playCount;
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class BallMove : MonoBehaviour
         {
             StartCoroutine(Reset());        //Restartコルーチンを始める
             playCount = playCount - 1;
+            playCountText.text = "playCount:" + playCount;
             if (playCount == 0)
             {
                 gameDirector.GameOver();
@@ -41,9 +45,8 @@ public class BallMove : MonoBehaviour
     IEnumerator Reset()
     {
         transform.position = new Vector3(0, 1, 0);
-        rb.velocity = Vector3.zero; //speedをゼロにする
+        rb.velocity = Vector3.zero;                     //speedをゼロにする
         yield return new WaitForSeconds(2f);
         rb.AddForce(Random.Range(-10,10), 0, -10, ForceMode.Impulse);
-
     }
 }

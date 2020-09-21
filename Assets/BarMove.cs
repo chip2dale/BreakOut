@@ -6,6 +6,7 @@ public class BarMove : MonoBehaviour
 {
     // Start is called before the first frame update
     public Rigidbody rb;
+    public BallMove ballMove;
     void Start()
     {
         
@@ -22,6 +23,14 @@ public class BarMove : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             rb.velocity = transform.right*-1*20;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "HeartItem")
+        {
+            ballMove.playCount = ballMove.playCount + 1;
+            ballMove.playCountText.text = "playCount:" + ballMove.playCount;
         }
     }
 }
